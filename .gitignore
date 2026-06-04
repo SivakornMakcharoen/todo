@@ -1,0 +1,16 @@
+vendor/
+node_modules/
+.env
+/.idea
+/.vscode
+/storage/*.key
+/public/storage
+/storage/framework/cache/data
+/storage/framework/sessions
+/storage/framework/testing
+/storage/framework/views
+/storage/logs
+Homestead.yaml
+Homestead.json
+/.env.backup
+.DS_Store
