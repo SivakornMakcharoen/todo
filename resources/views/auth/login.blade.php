@@ -37,6 +37,10 @@
 
                     <button type="submit" class="btn btn-primary w-100">เข้าสู่ระบบ</button>
                 </form>
+
+                <div class="mt-3 text-center">
+                    ยังไม่มีบัญชี? <a href="{{ route('register') }}">สมัครสมาชิก</a>
+                </div>
             </div>
         </div>
     </div>
