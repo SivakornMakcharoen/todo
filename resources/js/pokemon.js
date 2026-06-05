@@ -212,3 +212,5 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+//mini
