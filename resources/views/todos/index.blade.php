@@ -2,23 +2,23 @@
 
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h1>Todos</h1>
+    <h1>Check List</h1>
     <div>
         <a href="{{ route('todos.index', ['status' => null]) }}" class="btn btn-outline-secondary btn-sm">All</a>
-        <a href="{{ route('todos.index', ['status' => 'pending']) }}" class="btn btn-outline-warning btn-sm">Pending</a>
-        <a href="{{ route('todos.index', ['status' => 'completed']) }}" class="btn btn-outline-success btn-sm">Completed</a>
+        <a href="{{ route('todos.index', ['status' => 'pending']) }}" class="btn btn-outline-warning btn-sm">Unchecked</a>
+        <a href="{{ route('todos.index', ['status' => 'completed']) }}" class="btn btn-outline-success btn-sm">Checked</a>
     </div>
 </div>
 
 @if($todos->isEmpty())
-    <div class="alert alert-info">No todos yet. Add one to get started.</div>
+    <div class="alert alert-info">No checklist items yet. Add one to get started.</div>
 @else
     <div class="table-responsive">
         <table class="table table-striped align-middle">
             <thead>
                 <tr>
+                    <th style="width: 110px;">Check List</th>
                     <th>Title</th>
-                    <th>Status</th>
                     <th>Due Date</th>
                     <th>Created</th>
                     <th class="text-end">Actions</th>
@@ -27,9 +27,28 @@
             <tbody>
                 @foreach($todos as $todo)
                     <tr>
-                        <td><a href="{{ route('todos.show', $todo) }}">{{ $todo->title }}</a></td>
                         <td>
-                            <span class="badge bg-{{ $todo->status === 'completed' ? 'success' : 'warning' }} text-dark">{{ ucfirst($todo->status) }}</span>
+                            <form action="{{ route('todos.checklist', $todo) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <input type="hidden" name="checked" value="0">
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        name="checked"
+                                        value="1"
+                                        onchange="this.form.submit()"
+                                        {{ $todo->isCompleted() ? 'checked' : '' }}
+                                        aria-label="Mark {{ $todo->title }} as checked"
+                                    >
+                                </div>
+                            </form>
+                        </td>
+                        <td>
+                            <a href="{{ route('todos.show', $todo) }}" class="{{ $todo->isCompleted() ? 'text-decoration-line-through text-muted' : '' }}">
+                                {{ $todo->title }}
+                            </a>
                         </td>
                         <td>{{ $todo->due_date?->format('Y-m-d') ?? '-' }}</td>
                         <td>{{ $todo->created_at->format('Y-m-d') }}</td>

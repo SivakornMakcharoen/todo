@@ -3,7 +3,7 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <h1>Edit Todo</h1>
+            <h1>Edit Checklist Item</h1>
 
             @if($errors->any())
                 <div class="alert alert-danger">
@@ -34,12 +34,10 @@
                     <input type="date" name="due_date" value="{{ old('due_date', $todo->due_date?->format('Y-m-d')) }}" class="form-control">
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Status</label>
-                    <select name="status" class="form-select">
-                        <option value="pending" {{ old('status', $todo->status) === 'pending' ? 'selected' : '' }}>Pending</option>
-                        <option value="completed" {{ old('status', $todo->status) === 'completed' ? 'selected' : '' }}>Completed</option>
-                    </select>
+                <div class="mb-3 form-check">
+                    <input type="hidden" name="checked" value="0">
+                    <input type="checkbox" id="checked" name="checked" value="1" class="form-check-input" {{ old('checked', $todo->isCompleted()) ? 'checked' : '' }}>
+                    <label class="form-check-label" for="checked">Checked</label>
                 </div>
 
                 <button class="btn btn-primary">Update</button>
