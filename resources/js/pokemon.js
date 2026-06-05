@@ -214,3 +214,5 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 //mini
+
+//mono
