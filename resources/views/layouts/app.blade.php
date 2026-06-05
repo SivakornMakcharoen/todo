@@ -14,6 +14,9 @@
                 <ul class="navbar-nav ms-auto">
                     @auth
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('pokemon') }}">Pokemon</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('todos.create') }}">New Todo</a>
                         </li>
                         <li class="nav-item">
@@ -23,6 +26,9 @@
                             </form>
                         </li>
                     @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('pokemon') }}">Pokemon</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">Login</a>
                         </li>

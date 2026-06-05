@@ -11,6 +11,14 @@ Route::middleware('guest')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
 });
 
+Route::get('pokemon', function () {
+    return view('pokemon');
+})->name('pokemon');
+
+Route::get('pokemon/{id}', function ($id) {
+    return view('pokemon-show', ['id' => $id]);
+})->name('pokemon.show');
+
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
