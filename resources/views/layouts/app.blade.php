@@ -13,6 +13,17 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
                     @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('pokemon') }}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/1280px-Pok%C3%A9_Ball_icon.svg.png" width="30" height="30"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('todos.create') }}">New Todo</a>
+                        </li>
+                        <li class="nav-item">
+                            <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                                @csrf
+                                <button type="submit" class="btn btn-link nav-link py-0">Logout</button>
+                            </form>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="{{ Auth::user()->avatar ?? ('https://www.gravatar.com/avatar/' . md5(strtolower(trim(Auth::user()->email))) . '?s=40&d=identicon') }}" alt="{{ Auth::user()->name }}" class="rounded-circle" width="32" height="32">
@@ -34,6 +45,9 @@
                             </ul>
                         </li>
                     @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('pokemon') }}">Pokemon</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">Login</a>
                         </li>
