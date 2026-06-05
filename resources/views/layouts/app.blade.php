@@ -14,7 +14,7 @@
                 <ul class="navbar-nav ms-auto">
                     @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pokemon') }}">Pokemon</a>
+                            <a class="nav-link" href="{{ route('pokemon') }}"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/1280px-Pok%C3%A9_Ball_icon.svg.png" width="30" height="30"></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('todos.create') }}">New Todo</a>
