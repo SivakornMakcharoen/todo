@@ -6,7 +6,10 @@
             <h1>{{ $todo->title }}</h1>
 
             <div class="mb-3">
-                <span class="badge bg-{{ $todo->status === 'completed' ? 'success' : 'warning' }} text-dark">{{ ucfirst($todo->status) }}</span>
+                <div class="form-check d-inline-block">
+                    <input class="form-check-input" type="checkbox" disabled {{ $todo->isCompleted() ? 'checked' : '' }}>
+                    <label class="form-check-label">Checked</label>
+                </div>
                 <span class="text-muted ms-2">Due: {{ $todo->due_date?->format('Y-m-d') ?? 'No deadline' }}</span>
             </div>
 

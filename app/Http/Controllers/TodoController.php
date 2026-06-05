@@ -39,9 +39,10 @@ class TodoController extends Controller
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'status' => 'required|in:pending,completed',
             'due_date' => 'nullable|date',
         ]);
+
+        $data['status'] = $request->boolean('checked') ? 'completed' : 'pending';
 
         Todo::create($data);
 
@@ -63,7 +64,6 @@ class TodoController extends Controller
     {
         return view('todos.edit', compact('todo'));
     }
-
     /**
      * Update the specified resource in storage.
      */
@@ -72,13 +72,23 @@ class TodoController extends Controller
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'status' => 'required|in:pending,completed',
             'due_date' => 'nullable|date',
         ]);
+
+        $data['status'] = $request->boolean('checked') ? 'completed' : 'pending';
 
         $todo->update($data);
 
         return redirect()->route('todos.index')->with('success', 'Todo updated successfully.');
+    }
+
+    public function checklist(Request $request, Todo $todo)
+    {
+        $todo->update([
+            'status' => $request->boolean('checked') ? 'completed' : 'pending',
+        ]);
+
+        return back()->with('success', 'Checklist updated successfully.');
     }
 
     /**
@@ -91,3 +101,4 @@ class TodoController extends Controller
         return redirect()->route('todos.index')->with('success', 'Todo deleted successfully.');
     }
 }
+
