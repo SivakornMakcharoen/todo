@@ -15,6 +15,14 @@
 
     <div class="row mb-3">
         <div class="col-12">
+            <form id="pokemon-search-form" class="mb-3" action="" method="get">
+                <div class="input-group">
+                    <input id="pokemon-search-input" name="search" type="search" class="form-control" placeholder="ค้นหาโปเกมอน (ชื่อหรือรหัส)" value="{{ request('search') }}">
+                    <button class="btn btn-primary" type="submit">ค้นหา</button>
+                    <button id="pokemon-search-clear" type="button" class="btn btn-secondary">ล้าง</button>
+                </div>
+            </form>
+
             <nav aria-label="Pokemon pagination">
                 <ul id="pokemon-pagination" class="pagination flex-wrap"></ul>
             </nav>

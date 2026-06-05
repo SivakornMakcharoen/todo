@@ -18,12 +18,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('todos.create') }}">New Todo</a>
-                        </li>
-                        <li class="nav-item">
-                            <form method="POST" action="{{ route('logout') }}" class="d-inline">
-                                @csrf
-                                <button type="submit" class="btn btn-link nav-link py-0">Logout</button>
-                            </form>
+                        </li>                           
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="{{ Auth::user()->avatar ?? ('https://www.gravatar.com/avatar/' . md5(strtolower(trim(Auth::user()->email))) . '?s=40&d=identicon') }}" alt="{{ Auth::user()->name }}" class="rounded-circle" width="32" height="32">
